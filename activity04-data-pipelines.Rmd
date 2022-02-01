@@ -60,7 +60,7 @@ I try to be consistent with notation so here are some other forms that you might
 - "*hint*"; for example, *arrange* the variable.
 - "**Specific Area**"; for example, **Environment** tab.
 
-```{r load_data, message=TRUE}
+```{r load_data, message=FALSE}
 # Note that the :: method is redundant here
 # because we have already loaded the {tidyverse}
 # and {readr} is included in this.
@@ -69,8 +69,6 @@ I try to be consistent with notation so here are some other forms that you might
 # function comes from.
 
 college_recent_grads <- readr::read_csv("data/recent-grads.csv")
-
-college_recent_grads
 
 # Typical style once {tidyverse} is loaded:
 # college_recent_grads <- read_csv("data/recent-grads.csv")
@@ -82,7 +80,8 @@ You can view the entire dataset by clicking on the name of the data frame in the
 
 Explore and describe what the `message` option does in `load_data` code chunk.
 
-**Response**:
+**Response**: The message option returns
+system information about the import.
 
 
 Turn the `message` option off and continue in this activity.
@@ -162,7 +161,8 @@ Describe how you would go about answering this question using a different softwa
 You do not need to code anything.
 As you write this process, think of it as a series of steps and it might be helpful to start at the goal and work backwards.
 
-**Response**:
+**Response**: I would sort the dataset by unemployment rate, 
+then observe the major at the top.
 
 
 #### Using `{dplyr}`
@@ -171,7 +171,8 @@ In the R code chunk below, name it `rearrange_college`.
 
 Take the `college_recent_grads` dataset, *then* `arrange` the dataset by `unemployment_rate`.
 
-```{r}
+```{r rearrange_college}
+arrange(college_recent_grads, unemployment_rate)
 
 ```
 
@@ -184,11 +185,15 @@ Also, notice that by default when you *arrange* by a variable, it defaults to *a
 Use the pipeline that you made in the `rearrange_college` code chunk as the start to this solution, **then** `select` only the variables `rank`, `major`, and `unemployment_rate`.
 Name this code chunk `lowest_unemploy`.
 
-```{r}
-
+```{r lowest_unemploy}
+college_recent_grads %>%
+arrange(unemployment_rate) %>% 
+select(rank, major, unemployment_rate)
 ```
 
-**Response**:
+**Response**: The lowest unemployment rate was Mathematics and Computer
+Science, Military Technologies, Botany, Soil Science, and Educational
+Administration.
 
 
 <img src="README-img/noun_pause.png" alt="pause" width = "20"/> <b>Planned Pause Point</b>: If you feel that you have a good understanding of these commands, feel free to start working on your project. The remainder of this activity will help to expand these commands.
@@ -198,13 +203,16 @@ Name this code chunk `lowest_unemploy`.
 Using the `college_recent_grads` dataset and functions from `{dplyr}`, `arrange` the dataset by `sharewomen`, and `select` only `rank`, `major`, and `sharewomen`. 
 Name your code chunk `highest_prop_women`.
 
-```{r}
-
+```{r highest_prop_women}
+college_recent_grads %>%
+  arrange(sharewomen) %>%
+  select(rank, women, sharewomen, major)
 ```
 
 Discuss your output as it relates to the research question.
 
-**Response**:
+**Response**:Early Childhood Education and Communication Disorders
+Science are the two with the highest purportion of women.
 
 
 ![](README-img/noun_pause.png) **Planned Pause Point**: If you have any questions, contact your instructor. Otherwise feel free to continue on.
@@ -229,13 +237,18 @@ Using the `stem_categories` vector and knowledge that the median salary for all 
 Only display the variables `major`, `p25th`, `median`, and `p75th`
 Name the code chunk `stem_low_salaries`.
 
-```{r}
-
+```{r stem_low_salaries}
+college_recent_grads %>%
+  subset(major_category %in% stem_categories) %>%
+  filter(median < 36000) %>%
+  select(major, p25th, median, p75th)
 ```
 
 Discuss your output as it relates to the research question.
 
-**Response**:
+**Response**:Ten STEM fields graduate with a salary below $36,000. I am not
+surprised Environmental Science is one of them, but I am surprised at
+Neuroscience.
 
 
 ![](README-img/noun_pause.png) **(Final) Planned Pause Point**: If you have any questions, contact your instructor. Otherwise feel free to continue on.
