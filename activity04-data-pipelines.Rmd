@@ -10,7 +10,7 @@ Most of the functions that we will use this semester are from the `{tidyverse}` 
 While we will focus on `{dplyr}`, it will be nice to be able to produce graphical displays.
 Therefore, instead of loading both `{dplyr}` and `{ggplot2}`, in the code chunk below we load all of the `{tidyverse}`.
 
-```{r load_packages, message = TRUE}
+```{r load_packages, message = FALSE}
 library(tidyverse)
 ```
 
@@ -33,7 +33,7 @@ Knit your report with the `message = FALSE` R code chunk option and pay attentio
 Now, switch this option to `message = TRUE` and knit your report again.
 Discuss what is different when the `message` option is turned on (`TRUE`) and turned off (`FALSE`) for the previous code chunk.
 
-**Response**:
+**Response**: When it is FALSE, you do not see the output from running the code. When it is TRUE, then you can see the output.
 
 
 Turn the `message` option off and continue in this activity.
@@ -60,7 +60,7 @@ I try to be consistent with notation so here are some other forms that you might
 - "*hint*"; for example, *arrange* the variable.
 - "**Specific Area**"; for example, **Environment** tab.
 
-```{r load_data, message=FALSE}
+```{r load_data, message=TRUE}
 # Note that the :: method is redundant here
 # because we have already loaded the {tidyverse}
 # and {readr} is included in this.

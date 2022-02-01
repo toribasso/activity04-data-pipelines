@@ -14,17 +14,6 @@ graphical displays. Therefore, instead of loading both `{dplyr}` and
 library(tidyverse)
 ```
 
-    ## ── Attaching packages ─────────────────────────────────────── tidyverse 1.3.1 ──
-
-    ## ✓ ggplot2 3.3.4     ✓ purrr   0.3.4
-    ## ✓ tibble  3.1.2     ✓ dplyr   1.0.7
-    ## ✓ tidyr   1.1.3     ✓ stringr 1.4.0
-    ## ✓ readr   2.1.0     ✓ forcats 0.5.1
-
-    ## ── Conflicts ────────────────────────────────────────── tidyverse_conflicts() ──
-    ## x dplyr::filter() masks stats::filter()
-    ## x dplyr::lag()    masks stats::lag()
-
 There is some other useful items to point out from this code chunk:
 
 1.  It has been named (i.e., `load_packages`). Notice that the name
@@ -51,7 +40,8 @@ Now, switch this option to `message = TRUE` and knit your report again.
 Discuss what is different when the `message` option is turned on
 (`TRUE`) and turned off (`FALSE`) for the previous code chunk.
 
-**Response**:
+**Response**: When it is FALSE, you do not see the output from running
+the code. When it is TRUE, then you can see the output.
 
 Turn the `message` option off and continue in this activity.
 
@@ -96,7 +86,20 @@ you might see in documents:
 # function comes from.
 
 college_recent_grads <- readr::read_csv("data/recent-grads.csv")
+```
 
+    ## Rows: 173 Columns: 21
+
+    ## ── Column specification ────────────────────────────────────────────────────────
+    ## Delimiter: ","
+    ## chr  (2): major, major_category
+    ## dbl (19): rank, major_code, total, sample_size, men, women, sharewomen, empl...
+
+    ## 
+    ## ℹ Use `spec()` to retrieve the full column specification for this data.
+    ## ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.
+
+``` r
 college_recent_grads
 ```
 
